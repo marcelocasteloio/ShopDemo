@@ -88,6 +88,25 @@ public class IdValueObjectTests
 
     [Fact]
     [Trait("SharedKernel", nameof(IdValueObject))]
+    public void IdValueObject_Should_Generate_HashCode_Based_On_Value()
+    {
+        // Arrange
+        var idA = IdValueObject.GenerateNewId();
+        var idB = idA;
+        var idC = IdValueObject.GenerateNewId();
+
+        // Act
+        var hashCodeA = idA.GetHashCode();
+        var hashCodeB = idB.GetHashCode();
+        var hashCodeC = idC.GetHashCode();
+
+        // Assert
+        hashCodeA.Should().Be(hashCodeB);
+        hashCodeA.Should().NotBe(hashCodeC);
+    }
+
+    [Fact]
+    [Trait("SharedKernel", nameof(IdValueObject))]
     public void IdValueObject_Should_Use_Equals_Method()
     {
         // Arrange
@@ -98,10 +117,12 @@ public class IdValueObjectTests
         // Act
         var resultA = idA.Equals(idB);
         var resultB = idA.Equals(idC);
+        var resultC = idA.Equals(null);
 
         // Assert
         resultA.Should().BeTrue();
         resultB.Should().BeFalse();
+        resultC.Should().BeFalse();
     }
 
     [Fact]
