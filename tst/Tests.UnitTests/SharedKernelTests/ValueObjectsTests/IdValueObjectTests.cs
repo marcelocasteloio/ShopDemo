@@ -4,8 +4,11 @@ using ShopDemo.SharedKernel.ValueObjects;
 namespace ShopDemo.Tests.UnitTests.SharedKernelTests.ValueObjectsTests;
 public class IdValueObjectTests
 {
+    private const string CONTEXT = "SharedKernel";
+    private const string OBJECT_NAME = nameof(IdValueObject);
+
     [Fact(DisplayName = "Should generate new id")]
-    [Trait("SharedKernel", nameof(IdValueObject))]
+    [Trait(CONTEXT, OBJECT_NAME)]
     public void IdValueObject_Should_Generate_New_Id()
     {
         // Arrange and Act
@@ -16,7 +19,7 @@ public class IdValueObjectTests
     }
 
     [Fact(DisplayName = "Should generate new sequential id")]
-    [Trait("SharedKernel", nameof(IdValueObject))]
+    [Trait(CONTEXT, OBJECT_NAME)]
     public void IdValueObject_Should_Generate_New_Sequential_Id()
     {
         // Arrange
@@ -30,7 +33,7 @@ public class IdValueObjectTests
     }
 
     [Fact(DisplayName = "Should generated from existing id")]
-    [Trait("SharedKernel", nameof(IdValueObject))]
+    [Trait(CONTEXT, OBJECT_NAME)]
     public void IdValueObject_Should_Generated_From_Existing_Id()
     {
         // Arrange
@@ -44,7 +47,7 @@ public class IdValueObjectTests
     }
 
     [Fact(DisplayName = "Should generated from existing IdValueObject")]
-    [Trait("SharedKernel", nameof(IdValueObject))]
+    [Trait(CONTEXT, OBJECT_NAME)]
     public void IdValueObject_Should_Generate_From_Existing_IdValueObject()
     {
         // Arrange
@@ -58,7 +61,7 @@ public class IdValueObjectTests
     }
 
     [Fact(DisplayName = "Should implicit converted from guid")]
-    [Trait("SharedKernel", nameof(IdValueObject))]
+    [Trait(CONTEXT, OBJECT_NAME)]
     public void IdValueObject_Should_Implicit_Converted_From_Guid()
     {
         // Arrange
@@ -72,7 +75,7 @@ public class IdValueObjectTests
     }
 
     [Fact(DisplayName = "Should implicit converted to guid")]
-    [Trait("SharedKernel", nameof(IdValueObject))]
+    [Trait(CONTEXT, OBJECT_NAME)]
     public void IdValueObject_Should_Implict_Converted_To_Guid()
     {
         // Arrange
@@ -86,7 +89,7 @@ public class IdValueObjectTests
     }
 
     [Fact(DisplayName = "Should generate HashCode base on value")]
-    [Trait("SharedKernel", nameof(IdValueObject))]
+    [Trait(CONTEXT, OBJECT_NAME)]
     public void IdValueObject_Should_Generate_HashCode_Based_On_Value()
     {
         // Arrange
@@ -104,8 +107,24 @@ public class IdValueObjectTests
         hashCodeA.Should().NotBe(hashCodeC);
     }
 
+    [Fact(DisplayName = "Should correctly represented in string")]
+    [Trait(CONTEXT, OBJECT_NAME)]
+    public void IdValueObject_Should_Correctly_Represented_In_String()
+    {
+        // Arrange
+        var id = Guid.NewGuid();
+        var idValueObject = (IdValueObject)id;
+        var expected = id.ToString();
+
+        // Act
+        var toStringResult = idValueObject.ToString();
+
+        // Assert
+        toStringResult.Should().Be(expected);
+    }
+
     [Fact(DisplayName = "Should use equals method based on value")]
-    [Trait("SharedKernel", nameof(IdValueObject))]
+    [Trait(CONTEXT, OBJECT_NAME)]
     public void IdValueObject_Should_Use_Equals_Method_Based_On_Value()
     {
         // Arrange
@@ -125,7 +144,7 @@ public class IdValueObjectTests
     }
 
     [Fact(DisplayName = "Should use equals operator")]
-    [Trait("SharedKernel", nameof(IdValueObject))]
+    [Trait(CONTEXT, OBJECT_NAME)]
     public void IdValueObject_Should_Use_Equals_Operator()
     {
         // Arrange
@@ -143,7 +162,7 @@ public class IdValueObjectTests
     }
 
     [Fact(DisplayName = "Should use not equals operator")]
-    [Trait("SharedKernel", nameof(IdValueObject))]
+    [Trait(CONTEXT, OBJECT_NAME)]
     public void IdValueObject_Should_Use_NotEquals_Operator()
     {
         // Arrange
@@ -161,7 +180,7 @@ public class IdValueObjectTests
     }
 
     [Fact(DisplayName = "Should use greater than operator")]
-    [Trait("SharedKernel", nameof(IdValueObject))]
+    [Trait(CONTEXT, OBJECT_NAME)]
     public void IdValueObject_Should_Use_Greater_Than_Operator()
     {
         // Arrange
@@ -179,7 +198,7 @@ public class IdValueObjectTests
     }
 
     [Fact(DisplayName = "Should use greater than or equals operator")]
-    [Trait("SharedKernel", nameof(IdValueObject))]
+    [Trait(CONTEXT, OBJECT_NAME)]
     public void IdValueObject_Should_Use_Greater_Than_Or_Equals_Operator()
     {
         // Arrange
@@ -200,7 +219,7 @@ public class IdValueObjectTests
     }
 
     [Fact(DisplayName = "Should use less than operator")]
-    [Trait("SharedKernel", nameof(IdValueObject))]
+    [Trait(CONTEXT, OBJECT_NAME)]
     public void IdValueObject_Should_Use_Less_Than_Operator()
     {
         // Arrange
@@ -218,7 +237,7 @@ public class IdValueObjectTests
     }
 
     [Fact(DisplayName = "Should use less than or equals operator")]
-    [Trait("SharedKernel", nameof(IdValueObject))]
+    [Trait(CONTEXT, OBJECT_NAME)]
     public void IdValueObject_Should_Use_Less_Than_Or_Equals_Operator()
     {
         // Arrange

@@ -40,6 +40,7 @@ public readonly struct IdValueObject
     // Public Methods
     public override bool Equals([NotNullWhen(true)] object? obj) => obj is not null && this == (IdValueObject)obj;
     public override int GetHashCode() => Value.GetHashCode();
+    public override string ToString() => Value.ToString();
 
     // Builders
     public static IdValueObject GenerateNewId() => NewId.NextGuid();
