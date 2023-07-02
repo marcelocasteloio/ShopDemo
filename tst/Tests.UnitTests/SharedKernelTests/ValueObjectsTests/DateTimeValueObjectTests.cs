@@ -8,11 +8,11 @@ public class DateTimeValueObjectTests
 
     [Fact(DisplayName = "Should generated from utc now")]
     [Trait(CONTEXT, OBJECT_NAME)]
-    public void DateTimeValueObject_Should_Generated_From_Utc_Now()
+    public async Task DateTimeValueObject_Should_Generated_From_Utc_Now()
     {
         // Arrange
         var previousDateTime = DateTimeOffset.UtcNow;
-        Thread.Sleep(TimeSpan.FromMilliseconds(3));
+        await Task.Delay(TimeSpan.FromMilliseconds(3));
 
         // Act
         var datetime = DateTimeValueObject.FromUtcNow();
@@ -23,11 +23,11 @@ public class DateTimeValueObjectTests
 
     [Fact(DisplayName = "Should generated from existing DateTimeValueObject")]
     [Trait(CONTEXT, OBJECT_NAME)]
-    public void DateTimeValueObject_Should_Generated_From_Existing_DateTimeValueObject()
+    public async Task DateTimeValueObject_Should_Generated_From_Existing_DateTimeValueObject()
     {
         // Arrange
         var existingDateTimeValueObject = DateTimeValueObject.FromUtcNow();
-        Thread.Sleep(TimeSpan.FromMilliseconds(3));
+        await Task.Delay(TimeSpan.FromMilliseconds(3));
 
         // Act
         var datetime = DateTimeValueObject.FromExistingDateTimeValueObject(existingDateTimeValueObject);
@@ -38,11 +38,11 @@ public class DateTimeValueObjectTests
 
     [Fact(DisplayName = "Should generated from existing DateTime")]
     [Trait(CONTEXT, OBJECT_NAME)]
-    public void DateTimeValueObject_Should_Generated_From_Existing_DateTime()
+    public async Task DateTimeValueObject_Should_Generated_From_Existing_DateTime()
     {
         // Arrange
         var existingDateTime = DateTime.UtcNow;
-        Thread.Sleep(TimeSpan.FromMilliseconds(3));
+        await Task.Delay(TimeSpan.FromMilliseconds(3));
 
         // Act
         var datetime = DateTimeValueObject.FromExistingDateTime(existingDateTime);
@@ -53,11 +53,11 @@ public class DateTimeValueObjectTests
 
     [Fact(DisplayName = "Should generated from existing DateTimeOffset")]
     [Trait(CONTEXT, OBJECT_NAME)]
-    public void DateTimeValueObject_Should_Generated_From_Existing_DateTimeOffset()
+    public async Task DateTimeValueObject_Should_Generated_From_Existing_DateTimeOffset()
     {
         // Arrange
         var existingDateTimeOffset = DateTimeOffset.UtcNow;
-        Thread.Sleep(TimeSpan.FromMilliseconds(3));
+        await Task.Delay(TimeSpan.FromMilliseconds(3));
 
         // Act
         var datetime = DateTimeValueObject.FromExistingDateTimeOffset(existingDateTimeOffset);
@@ -68,12 +68,12 @@ public class DateTimeValueObjectTests
 
     [Fact(DisplayName = "Should get HashCode based on value")]
     [Trait(CONTEXT, OBJECT_NAME)]
-    public void DateTimeValueObject_Should_Get_HashCode_Based_On_Value()
+    public async Task DateTimeValueObject_Should_Get_HashCode_Based_On_Value()
     {
         // Arrange
         var existingDateTimeOffset = DateTimeOffset.UtcNow;
         var existingHashCode = existingDateTimeOffset.GetHashCode();
-        Thread.Sleep(TimeSpan.FromMilliseconds(3));
+        await Task.Delay(TimeSpan.FromMilliseconds(3));
         var anotherExistingHashCode = DateTimeValueObject.FromUtcNow().GetHashCode();
 
         // Act
@@ -87,12 +87,12 @@ public class DateTimeValueObjectTests
 
     [Fact(DisplayName = "Should correctly represented in string")]
     [Trait(CONTEXT, OBJECT_NAME)]
-    public void DateTimeValueObject_Should_Correctly_Represented_In_String()
+    public async Task DateTimeValueObject_Should_Correctly_Represented_In_String()
     {
         // Arrange
         var existingDateTimeOffset = DateTimeOffset.UtcNow;
         var expected = existingDateTimeOffset.ToString();
-        Thread.Sleep(TimeSpan.FromMilliseconds(3));
+        await Task.Delay(TimeSpan.FromMilliseconds(3));
 
         // Act
         var datetime = DateTimeValueObject.FromExistingDateTimeOffset(existingDateTimeOffset);
@@ -104,12 +104,12 @@ public class DateTimeValueObjectTests
 
     [Fact(DisplayName = "Should use equals method based on value")]
     [Trait(CONTEXT, OBJECT_NAME)]
-    public void DateTimeValueObject_Should_Use_Equals_Method_Based_On_Value()
+    public async Task DateTimeValueObject_Should_Use_Equals_Method_Based_On_Value()
     {
         // Arrange
         var idA = DateTimeValueObject.FromUtcNow();
         var idB = idA;
-        Thread.Sleep(TimeSpan.FromMilliseconds(3));
+        await Task.Delay(TimeSpan.FromMilliseconds(3));
         var idC = DateTimeValueObject.FromUtcNow();
 
         // Act
