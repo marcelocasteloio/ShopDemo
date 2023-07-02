@@ -1,5 +1,4 @@
-﻿using FluentAssertions;
-using ShopDemo.SharedKernel.ValueObjects;
+﻿using ShopDemo.SharedKernel.ValueObjects;
 
 namespace ShopDemo.Tests.UnitTests.SharedKernelTests.ValueObjectsTests;
 public class IdValueObjectTests
@@ -15,7 +14,7 @@ public class IdValueObjectTests
         var id = IdValueObject.GenerateNewId();
 
         // Assert
-        id.Value.Should().NotBe(default(Guid));
+        id.Value.Should().NotBe(Guid.Empty);
     }
 
     [Fact(DisplayName = "Should generate new sequential id")]
