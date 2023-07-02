@@ -27,7 +27,7 @@ public readonly struct DateTimeValueObject
     public static implicit operator DateTime(DateTimeValueObject value) => value.Value.DateTime;
 
     public static bool operator ==(DateTimeValueObject left, DateTimeValueObject right) => left.Value == right.Value;
-    public static bool operator !=(DateTimeValueObject left, DateTimeValueObject right) => !(left.Value == right.Value);
+    public static bool operator !=(DateTimeValueObject left, DateTimeValueObject right) => left.Value != right.Value;
     public static bool operator >(DateTimeValueObject left, DateTimeValueObject right) => left.Value > right.Value;
     public static bool operator >=(DateTimeValueObject left, DateTimeValueObject right) => left.Value >= right.Value;
     public static bool operator <(DateTimeValueObject left, DateTimeValueObject right) => left.Value < right.Value;

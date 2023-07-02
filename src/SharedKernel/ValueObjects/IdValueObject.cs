@@ -31,7 +31,7 @@ public readonly struct IdValueObject
     public static implicit operator Guid(IdValueObject value) => value.Value;
 
     public static bool operator ==(IdValueObject left, IdValueObject right) => left.Value == right.Value;
-    public static bool operator !=(IdValueObject left, IdValueObject right) => !(left.Value == right.Value);
+    public static bool operator !=(IdValueObject left, IdValueObject right) => left.Value != right.Value;
     public static bool operator >(IdValueObject left, IdValueObject right) =>  left.Value > right.Value;
     public static bool operator >=(IdValueObject left, IdValueObject right) =>  left.Value >= right.Value;
     public static bool operator <(IdValueObject left, IdValueObject right) =>  left.Value < right.Value;
