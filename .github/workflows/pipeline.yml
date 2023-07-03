@@ -70,7 +70,6 @@ jobs:
         } else {
             Write-Output "No matches found."
         }
-        echo "::set-output name=multant_test_report_path::$firstMatch"
         echo "$firstMatch" > multant-test-report-path.txt
     - name: Check Mutant Report Path
       run: echo "$(cat multant-test-report-path.txt)"
