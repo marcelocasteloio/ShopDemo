@@ -62,7 +62,7 @@ jobs:
         dotnet stryker
         cd ../..
     - name: Archive Multant Test
-        uses: actions/upload-artifact@v3
-        with:
-          name: code-coverage-report
-          path: ./tst/Tests.UnitTests/**/*.html
+      uses: actions/upload-artifact@v3
+      with:
+        name: code-coverage-report
+        path: ./tst/Tests.UnitTests/**/*.html
