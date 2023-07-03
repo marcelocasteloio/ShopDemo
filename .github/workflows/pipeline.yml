@@ -71,8 +71,9 @@ jobs:
             Write-Output "No matches found."
         }
         echo "::set-output name=multant_test_report_path::$firstMatch"
+        echo "$firstMatch" > multant-test-report-path.txt
     - name: Check Mutant Report Path
-      run: echo ${{ steps.run_multant_test.outputs.multant_test_report_path }}
+      run: echo "$(cat report-path.txt)"
     - name: Archive Multant Test
       uses: actions/upload-artifact@v3
       with:
