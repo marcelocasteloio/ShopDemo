@@ -70,7 +70,7 @@ jobs:
         } else {
             Write-Output "No matches found."
         }
-        echo "MUTANT_TEST_REPORT_PATH=$($firstMatch)" >> $GITHUB_ENV
+        echo "::set-env name=MUTANT_TEST_REPORT_PATH::$firstMatch"
     - name: Check Mutant Report Path
       run: echo $MUTANT_TEST_REPORT_PATH
     - name: Archive Multant Test
