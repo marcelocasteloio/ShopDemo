@@ -75,4 +75,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: code-coverage-report
-        path: $MUTANT_TEST_REPORT_PATH
+        path: ${{ env.MUTANT_TEST_REPORT_PATH }}
