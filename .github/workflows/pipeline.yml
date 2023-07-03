@@ -77,4 +77,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: code-coverage-report
-        path: "$(cat multant-test-report-path.txt)"
+        path: "${{cat multant-test-report-path.txt}}"
