@@ -74,7 +74,7 @@ jobs:
         echo "$firstMatch" > multant-test-report-path.txt
         echo "MULTANT_TEST_REPORT=$firstMatch" >> $GITHUB_ENV
     - name: Check Mutant Report Path
-      run: echo $MULTANT_TEST_REPORT
+      run: echo "$MULTANT_TEST_REPORT"
     - name: Archive Multant Test
       uses: actions/upload-artifact@v3
       with:
