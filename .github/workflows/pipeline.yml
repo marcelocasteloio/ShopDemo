@@ -70,7 +70,7 @@ jobs:
         } else {
             Write-Output "No matches found."
         }
-        echo "MUTANT_TEST_REPORT_PATH=$firstMatch" >> $GITHUB_ENV
+        echo "MUTANT_TEST_REPORT_PATH=$($firstMatch)" >> $GITHUB_ENV
     - name: Archive Multant Test
       uses: actions/upload-artifact@v3
       with:
