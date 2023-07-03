@@ -76,5 +76,5 @@ jobs:
     - name: Archive Multant Test
       uses: actions/upload-artifact@v3
       with:
-        name: code-coverage-report
-        path: "${{cat multant-test-report-path.txt}}"
+        name: multant-test-report
+        path: "$(cat multant-test-report-path.txt)"
