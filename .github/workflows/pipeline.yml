@@ -61,9 +61,15 @@ jobs:
       run: |
         cd ./tst/Tests.UnitTests
         dotnet stryker
+        cp ./tst/Tests.UnitTests/**/*.html ./tst/Tests.UnitTests/StrykerOutput/report.html
         cd ../..
     - name: Archive Multant Test
       uses: actions/upload-artifact@v3
       with:
         name: code-coverage-report
-        path: ./tst/Tests.UnitTests/**/*.html
+        path: ./tst/Tests.UnitTests/StrykerOutput/report.html
+    - name: HTML Preview
+      id: html_preview
+      uses: pavi2410/html-preview-action@v2
+      with:
+        html_file: './tst/Tests.UnitTests/StrykerOutput/report.html'
