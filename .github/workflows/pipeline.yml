@@ -54,7 +54,8 @@ jobs:
       shell: pwsh
       run: |
         dotnet tool install -g dotnet-stryker
-    - name: Run Multant Test
+    - id: run-multant-tests
+      name: Run Multant Test
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       shell: pwsh
@@ -71,8 +72,9 @@ jobs:
             Write-Output "No matches found."
         }
         echo "$firstMatch" > multant-test-report-path.txt
+        echo "MULTANT_TEST_REPORT=$(firstMatch)" >> $GITHUB_ENV
     - name: Check Mutant Report Path
-      run: echo "$(cat multant-test-report-path.txt)"
+      run: echo $MULTANT_TEST_REPORT
     - name: Archive Multant Test
       uses: actions/upload-artifact@v3
       with:
