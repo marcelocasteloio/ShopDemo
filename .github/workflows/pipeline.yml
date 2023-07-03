@@ -73,9 +73,9 @@ jobs:
         echo "::set-output name=multant_test_report_path::$firstMatch"
         echo "$firstMatch" > multant-test-report-path.txt
     - name: Check Mutant Report Path
-      run: echo "$(cat report-path.txt)"
+      run: echo "$(cat multant-test-report-path.txt)"
     - name: Archive Multant Test
       uses: actions/upload-artifact@v3
       with:
         name: code-coverage-report
-        path: "${{ steps.run_multant_test.outputs.multant_test_report_path }}"
+        path: "$(cat multant-test-report-path.txt)"
