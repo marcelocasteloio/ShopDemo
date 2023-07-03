@@ -65,15 +65,14 @@ jobs:
 
         $matches = Get-ChildItem -Path . -Filter "mutation-report.html" -Recurse | %{$_.FullName}
         if ($matches) {
-            $firstMatch = $matches[0]
+            $firstMatch = $matches
             Write-Output "First match: $firstMatch"
         } else {
             Write-Output "No matches found."
         }
-
-        echo "::set-output name=mutation-report::$firstMatch"
+        echo "MUTANT_TEST_REPORT_PATH=$firstMatch" >> $GITHUB_ENV
     - name: Archive Multant Test
       uses: actions/upload-artifact@v3
       with:
         name: code-coverage-report
-        path: "${{ steps.run-multant-test.outputs.mutation-report }}"
+        path: $MUTANT_TEST_REPORT_PATH
