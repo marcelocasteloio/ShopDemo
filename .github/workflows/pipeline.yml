@@ -70,11 +70,11 @@ jobs:
         } else {
             Write-Output "No matches found."
         }
-        echo "::set-env name=MUTANT_TEST_REPORT_PATH::$firstMatch"
+        echo "::set-output name=multant_test_report_path::$firstMatch"
     - name: Check Mutant Report Path
-      run: echo $MUTANT_TEST_REPORT_PATH
+      run: echo ${{ steps.run_multant_test.outputs.multant_test_report_path }}
     - name: Archive Multant Test
       uses: actions/upload-artifact@v3
       with:
         name: code-coverage-report
-        path: "${{ env.MUTANT_TEST_REPORT_PATH }}"
+        path: "${{ steps.run_multant_test.outputs.multant_test_report_path }}"
