@@ -71,7 +71,8 @@ jobs:
         } else {
             Write-Output "No matches found."
         }
-        echo "multant_test_report=$firstMatch" >> "$GITHUB_ENV"
+        # echo "multant_test_report=$firstMatch" >> "$GITHUB_ENV"
+        echo "multant_test_report=qwerty" >> "$GITHUB_ENV"
     - name: Check Mutant Report Path
       run: echo "${{ env.multant_test_report }}"
     - name: Archive Multant Test
