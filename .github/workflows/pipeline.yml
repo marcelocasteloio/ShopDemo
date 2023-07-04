@@ -71,7 +71,6 @@ jobs:
         } else {
             Write-Output "No matches found."
         }
-        echo "$firstMatch" > multant-test-report-path.txt
         echo "multant_test_report=$firstMatch" >> "$GITHUB_ENV"
     - name: Check Mutant Report Path
       run: echo "${{ env.multant_test_report }}"
