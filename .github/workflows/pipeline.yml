@@ -72,15 +72,14 @@ jobs:
             Write-Output "No matches found."
         }
         echo "$firstMatch" > multant-test-report-path.txt
-        echo "MULTANT_TEST_REPORT=TesteTesteTeste" >> $GITHUB_ENV
-        echo "$MULTANT_TEST_REPORT"
+        echo "multant_test_report=$firstMatch" >> "$GITHUB_ENV"
     - name: Check Mutant Report Path
-      run: echo "$env:MULTANT_TEST_REPORT"
+      run: echo "${{ env.multant_test_report }}"
     - name: Archive Multant Test
       uses: actions/upload-artifact@v3
       with:
         name: multant-test-report
-        path: "$(cat multant-test-report-path.txt)"
+        path: "${{ env.multant_test_report }}"
     - name: HTML Preview
       id: html_preview
       uses: pavi2410/html-preview-action@v2
