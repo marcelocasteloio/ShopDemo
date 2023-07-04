@@ -72,7 +72,7 @@ jobs:
             Write-Output "No matches found."
         }
         echo "$firstMatch" > multant-test-report-path.txt
-        echo "MULTANT_TEST_REPORT=TesteTesteTeste" >> $GITHUB_ENV
+        echo "MULTANT_TEST_REPORT=TesteTesteTeste" >>  $GITHUB_OUTPUT
         echo "$MULTANT_TEST_REPORT"
     - name: Check Mutant Report Path
       run: echo "$env:MULTANT_TEST_REPORT"
@@ -86,3 +86,12 @@ jobs:
       uses: pavi2410/html-preview-action@v2
       with:
         html_file: "$(cat multant-test-report-path.txt)"
+    - name: Set the value
+      id: step_one
+      run: |
+        echo "action_state=yellow" >> "$GITHUB_ENV"
+    - name: Use the value
+      id: step_two
+      run: |
+  
+        echo "${{ env.action_state }}" # This will output 'yellow'
