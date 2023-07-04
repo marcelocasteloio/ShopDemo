@@ -72,7 +72,7 @@ jobs:
             Write-Output "No matches found."
         }
         echo "$firstMatch" > multant-test-report-path.txt
-        echo "MULTANT_TEST_REPORT=TesteTesteTeste" >>  $GITHUB_OUTPUT
+        echo "MULTANT_TEST_REPORT=TesteTesteTeste" >> $GITHUB_ENV
         echo "$MULTANT_TEST_REPORT"
     - name: Check Mutant Report Path
       run: echo "$env:MULTANT_TEST_REPORT"
