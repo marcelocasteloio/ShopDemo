@@ -1,6 +1,4 @@
-﻿using System.Runtime.Serialization;
-
-namespace ShopDemo.SharedKernel.Exceptions;
+﻿namespace ShopDemo.SharedKernel.Exceptions;
 
 [Serializable]
 public class DateTimeShouldBeUtcException
