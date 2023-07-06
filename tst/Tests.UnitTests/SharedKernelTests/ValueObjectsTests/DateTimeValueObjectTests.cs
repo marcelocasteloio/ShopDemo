@@ -1,4 +1,5 @@
-﻿using ShopDemo.SharedKernel.ValueObjects;
+﻿using ShopDemo.SharedKernel.Exceptions;
+using ShopDemo.SharedKernel.ValueObjects;
 
 namespace ShopDemo.Tests.UnitTests.SharedKernelTests.ValueObjectsTests;
 public class DateTimeValueObjectTests
@@ -50,6 +51,29 @@ public class DateTimeValueObjectTests
         // Assert
         datetime.Value.Should().Be(existingDateTime);
     }
+
+    [Fact(DisplayName = "Should not generated from existing DateTime without utc kind")]
+    [Trait(CONTEXT, OBJECT_NAME)]
+    public void DateTimeValueObject_Should_Not_Generated_From_Existing_DateTime_Without_Utc_Kind()
+    {
+        // Arrange
+        var existingDateTime = DateTime.Now;
+        var hasThrownException = false;
+
+        // Act
+        try
+        {
+            _ = DateTimeValueObject.FromExistingDateTime(existingDateTime);
+        }
+        catch (DateTimeShouldBeUtcException)
+        {
+            hasThrownException = true;
+        }
+
+        // Assert
+        hasThrownException.Should().BeTrue();
+    }
+
 
     [Fact(DisplayName = "Should generated from existing DateTimeOffset")]
     [Trait(CONTEXT, OBJECT_NAME)]
