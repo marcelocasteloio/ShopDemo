@@ -260,4 +260,60 @@ public class DateTimeValueObjectTests
         resultB.Should().BeTrue();
         resultC.Should().BeFalse();
     }
+
+    [Fact(DisplayName = "Should implicited converted from DateTimeOffset")]
+    [Trait(CONTEXT, OBJECT_NAME)]
+    public void DateTimeValueObject_Should_Implicited_Converted_From_DateTimeOffset()
+    {
+        // Arrange
+        var existingDateTimeOffset = DateTimeOffset.UtcNow;
+
+        // Act
+        DateTimeValueObject datetime = existingDateTimeOffset;
+
+        // Arrange
+        datetime.Value.Should().Be(existingDateTimeOffset);
+    }
+
+    [Fact(DisplayName = "Should implicited converted to DateTimeOffset")]
+    [Trait(CONTEXT, OBJECT_NAME)]
+    public void DateTimeValueObject_Should_Implicited_Converted_To_DateTimeOffset()
+    {
+        // Arrange
+        var existingDateTimeValueObject = DateTimeValueObject.FromUtcNow();
+
+        // Act
+        DateTimeOffset datetimeOffset = existingDateTimeValueObject;
+
+        // Arrange
+        datetimeOffset.Should().Be(existingDateTimeValueObject.Value);
+    }
+
+    [Fact(DisplayName = "Should implicited converted from DateTime")]
+    [Trait(CONTEXT, OBJECT_NAME)]
+    public void DateTimeValueObject_Should_Implicited_Converted_From_DateTime()
+    {
+        // Arrange
+        var existingDateTime = DateTime.UtcNow;
+
+        // Act
+        DateTimeValueObject datetime = existingDateTime;
+
+        // Arrange
+        datetime.Value.Should().Be(existingDateTime);
+    }
+
+    [Fact(DisplayName = "Should implicited converted to DateTime")]
+    [Trait(CONTEXT, OBJECT_NAME)]
+    public void DateTimeValueObject_Should_Implicited_Converted_To_DateTime()
+    {
+        // Arrange
+        var existingDateTimeValueObject = DateTimeValueObject.FromUtcNow();
+
+        // Act
+        DateTime datetime = existingDateTimeValueObject;
+
+        // Arrange
+        datetime.Should().Be(existingDateTimeValueObject.Value.DateTime);
+    }
 }
