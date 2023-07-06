@@ -10,7 +10,7 @@ on:
 
 jobs:
 
-  sonar:    
+  SAST:    
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
