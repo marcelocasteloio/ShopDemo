@@ -4,8 +4,7 @@ using System.Reflection;
 
 var benchmarkTypeFilter = new Func<Type, bool>(type => 
     typeof(IBenchmark).IsAssignableFrom(type) 
-    && !type.IsInterface 
-    && type != typeof(IBenchmark)
+    && !type.IsInterface
 );
 
 var typeSequence = 0;
@@ -30,6 +29,7 @@ Console.WriteLine("Benchmarks:");
 foreach (var typeGroup in typeGroupCollection)
 {
     Console.WriteLine($"\t{typeGroup.Namespace}");
+
     foreach (var benchmarkType in typeGroup.BenchmarkTypeCollection)
         Console.WriteLine($"\t\t{benchmarkType.Key} - {benchmarkType.Value.Name}");
 }
