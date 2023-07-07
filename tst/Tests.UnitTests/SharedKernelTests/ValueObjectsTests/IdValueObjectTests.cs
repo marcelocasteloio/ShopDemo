@@ -1,5 +1,4 @@
 ﻿using ShopDemo.SharedKernel.ValueObjects;
-using System.Collections.Concurrent;
 
 namespace ShopDemo.Tests.UnitTests.SharedKernelTests.ValueObjectsTests;
 public class IdValueObjectTests
@@ -17,7 +16,6 @@ public class IdValueObjectTests
         // Assert
         id.Value.Should().NotBe(Guid.Empty);
     }
-
 
     [Fact(DisplayName = "Should generate new id in single thread")]
     [Trait(CONTEXT, OBJECT_NAME)]
@@ -63,10 +61,10 @@ public class IdValueObjectTests
         // Assert
         foreach (var item in dict)
         {
-            var concurrentBag = item.Value.ToList();
+            var list = item.Value.ToList();
 
-            for (int i = 0;i < concurrentBag.Count - 1;i++)
-                (concurrentBag[i] < concurrentBag[i + 1]).Should().BeTrue();
+            for (int i = 0;i < list.Count - 1;i++)
+                (list[i] < list[i + 1]).Should().BeTrue();
         }
     }
 
