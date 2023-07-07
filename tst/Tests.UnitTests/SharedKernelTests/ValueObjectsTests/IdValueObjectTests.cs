@@ -1,4 +1,5 @@
 ﻿using ShopDemo.SharedKernel.ValueObjects;
+using System.Collections.Concurrent;
 
 namespace ShopDemo.Tests.UnitTests.SharedKernelTests.ValueObjectsTests;
 public class IdValueObjectTests
@@ -15,6 +16,58 @@ public class IdValueObjectTests
 
         // Assert
         id.Value.Should().NotBe(Guid.Empty);
+    }
+
+
+    [Fact(DisplayName = "Should generate new id in single thread")]
+    [Trait(CONTEXT, OBJECT_NAME)]
+    public void IdValueObject_Should_Generate_New_Id_In_Single_Thread()
+    {
+        // Arrange
+        var listSize = 1_000_000;
+        var idList = new List<IdValueObject>(listSize);
+
+        // Act
+        for (int i = 0; i < listSize; i++)
+        {
+            idList.Add(IdValueObject.GenerateNewId());
+        }
+
+        // Assert
+        for (int i = 0; i < idList.Count - 1; i++)
+            (idList[i] < idList[i + 1]).Should().BeTrue();
+    }
+
+    [Fact(DisplayName = "Should generate new id in multi thread")]
+    [Trait(CONTEXT, OBJECT_NAME)]
+    public void IdValueObject_Should_Generate_New_Id_In_Multi_Thread()
+    {
+        // Arrange
+        var idCount = 1_000_000;
+        var chunkSize = 10_000;
+        var dict = new Dictionary<int, List<IdValueObject>>();
+
+        var chunkCollection = Enumerable.Range(1, idCount).Chunk(chunkSize).ToArray();
+        for (int i = 0; i < chunkCollection.Length; i++)
+            dict.Add(i, new List<IdValueObject>(chunkSize));
+
+        // Act
+        Parallel.For(0, chunkCollection.Length, i =>
+        {
+            var chunk = chunkCollection[i];
+
+            for (int j = 0; j < chunk.Length; j++)
+                dict[i].Add(IdValueObject.GenerateNewId());
+        });
+
+        // Assert
+        foreach (var item in dict)
+        {
+            var concurrentBag = item.Value.ToList();
+
+            for (int i = 0;i < concurrentBag.Count - 1;i++)
+                (concurrentBag[i] < concurrentBag[i + 1]).Should().BeTrue();
+        }
     }
 
     [Fact(DisplayName = "Should generate new sequential id")]

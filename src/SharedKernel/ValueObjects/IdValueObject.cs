@@ -43,7 +43,7 @@ public readonly struct IdValueObject
     public override string ToString() => Value.ToString();
 
     // Builders
-    public static IdValueObject GenerateNewId() => NewId.NextGuid();
+    public static IdValueObject GenerateNewId() => NewId.NextSequentialGuid();
     public static IdValueObject FromExistingId(Guid id) => new IdValueObject(id).Value;
     public static IdValueObject FromExistingId(IdValueObject id) => new IdValueObject(id).Value;
 }
