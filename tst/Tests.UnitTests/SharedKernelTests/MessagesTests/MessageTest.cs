@@ -65,6 +65,41 @@ public class MessageTest
         }
     }
 
+    [Fact(DisplayName = "Should correctly create success")]
+    [Trait(CONTEXT, OBJECT_NAME)]
+    public void Message_Should_Correctly_Create_Success()
+    {
+        // Arrange
+        var expectedMessageType = MessageType.Success;
+        var code = "sample code";
+        var description = "sample description";
+
+        // Act
+        var message = Message.CreateSuccess(code, description);
+
+        // Assert
+        message.Type.Should().Be(expectedMessageType);
+        message.Code.Should().Be(code);
+        message.Description.Should().Be(description);
+    }
+
+    [Fact(DisplayName = "Should correctly create success without description")]
+    [Trait(CONTEXT, OBJECT_NAME)]
+    public void Message_Should_Correctly_Create_Success_Without_Description()
+    {
+        // Arrange
+        var expectedMessageType = MessageType.Success;
+        var code = "sample code";
+
+        // Act
+        var message = Message.CreateSuccess(code, description: null);
+
+        // Assert
+        message.Type.Should().Be(expectedMessageType);
+        message.Code.Should().Be(code);
+        message.Description.Should().BeNull();
+    }
+
     [Fact(DisplayName = "Should correctly create information")]
     [Trait(CONTEXT, OBJECT_NAME)]
     public void Message_Should_Correctly_Create_Information()
