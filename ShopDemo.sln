@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A335F5E5-AE15-4F87-A504-61418DF6C0A6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - src", "1 - src", "{A335F5E5-AE15-4F87-A504-61418DF6C0A6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tst", "tst", "{DA4A463A-1480-4F40-9566-B10447BE3D44}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - tst", "2 - tst", "{DA4A463A-1480-4F40-9566-B10447BE3D44}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopDemo.Tests.UnitTests", "tst\Tests.UnitTests\ShopDemo.Tests.UnitTests.csproj", "{3A0C2DF1-AA83-47D3-A871-AFF5949BAB9D}"
 EndProject
@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - SharedKernel", "1 - Sha
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopDemo.SharedKernel", "src\SharedKernel\ShopDemo.SharedKernel.csproj", "{93EFAF35-5157-4C95-9207-BA6FF80CFFCF}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "benchs", "benchs", "{D0309179-0E23-4033-B07E-4F42A3201CED}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - benchs", "3 - benchs", "{D0309179-0E23-4033-B07E-4F42A3201CED}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopDemo.Benchmarks", "benchs\Benchmarks\ShopDemo.Benchmarks.csproj", "{D9099CD1-2958-4C1D-9505-70D4F2532A2D}"
 EndProject
