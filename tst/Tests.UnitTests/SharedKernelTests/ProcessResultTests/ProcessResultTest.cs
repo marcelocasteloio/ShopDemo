@@ -22,7 +22,8 @@ public class ProcessResultTest
         var processResultCollection = new[]
         {
             ProcessResult.Create(processResultType),
-            ProcessResult.CreateSuccess()
+            ProcessResult.CreateSuccess(),
+            ProcessResult.FromMessageCollection()
         };
 
         // Assert
@@ -52,7 +53,8 @@ public class ProcessResultTest
         var processResultCollection = new[]
         {
             ProcessResult<object>.Create(processResultType, output),
-            ProcessResult<object>.CreateSuccess(output)
+            ProcessResult<object>.CreateSuccess(output),
+            ProcessResult<object>.FromMessageCollection(output)
         };
 
         // Assert
