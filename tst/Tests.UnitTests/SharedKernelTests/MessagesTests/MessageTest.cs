@@ -1,12 +1,6 @@
 ﻿using ShopDemo.SharedKernel.Messages;
 using ShopDemo.SharedKernel.Messages.Enums;
 using ShopDemo.SharedKernel.Messages.Exceptions;
-using ShopDemo.SharedKernel.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ShopDemo.Tests.UnitTests.SharedKernelTests.MessagesTests;
 public class MessageTest

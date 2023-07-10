@@ -1,6 +1,7 @@
 ﻿using ShopDemo.SharedKernel.Messages;
 using ShopDemo.SharedKernel.Messages.Enums;
 using ShopDemo.SharedKernel.ProcessResult.Enums;
+using ShopDemo.SharedKernel.ProcessResult.Exceptions;
 
 namespace ShopDemo.SharedKernel.ProcessResult;
 public readonly struct ProcessResult
@@ -18,6 +19,8 @@ public readonly struct ProcessResult
         IEnumerable<Message>? messageCollection
     )
     {
+        ValidateType(type);
+
         Type = type;
         MessageCollection = messageCollection ?? Enumerable.Empty<Message>();
     }
@@ -31,7 +34,8 @@ public readonly struct ProcessResult
     public static ProcessResult CreateSuccess(IEnumerable<Message>? messageCollection = null) => new(ProcessResultType.Success, messageCollection);
     public static ProcessResult CreateError(IEnumerable<Message>? messageCollection = null) => new(ProcessResultType.Error, messageCollection);
     public static ProcessResult CreatePartial(IEnumerable<Message>? messageCollection = null) => new(ProcessResultType.Partial, messageCollection);
-    public static ProcessResult CreateBasedOnMessageCollection(IEnumerable<Message>? messageCollection = null)
+    public static ProcessResult FromProcessResultWithOutput<TOutput>(ProcessResult<TOutput> processResult) => Create(processResult.Type, processResult.MessageCollection);
+    public static ProcessResult FromMessageCollection(IEnumerable<Message>? messageCollection = null)
     {
         if (messageCollection is null || !messageCollection.Any())
             return CreateSuccess();
@@ -42,6 +46,13 @@ public readonly struct ProcessResult
                 : CreateError(messageCollection);
         else
             return CreateSuccess(messageCollection);
+    }
+
+    // Private Methods
+    private static void ValidateType(ProcessResultType type)
+    {
+        if (!Enum.IsDefined(type))
+            throw new InvalidProcessResultTypeException(processResultType: type);
     }
 }
 public readonly struct ProcessResult<TOutput>
@@ -62,6 +73,8 @@ public readonly struct ProcessResult<TOutput>
         TOutput? output
     )
     {
+        ValidateType(type);
+
         Type = type;
         MessageCollection = messageCollection ?? Enumerable.Empty<Message>();
         Output = output;
@@ -70,13 +83,14 @@ public readonly struct ProcessResult<TOutput>
     // Operators
     public static implicit operator ProcessResult<TOutput>(bool value) => value ? CreateSuccess(output: default) : CreateError(output: default);
     public static implicit operator bool(ProcessResult<TOutput> value) => value.IsSuccess;
+    public static implicit operator ProcessResult<TOutput>(ProcessResult value) => Create(value.Type, output: default, value.MessageCollection);
 
     // Builders
     public static ProcessResult<TOutput> Create(ProcessResultType type, TOutput? output, IEnumerable<Message>? messageCollection = null) => new(type, messageCollection, output);
     public static ProcessResult<TOutput> CreateSuccess(TOutput? output, IEnumerable<Message>? messageCollection = null) => new(ProcessResultType.Success, messageCollection, output);
     public static ProcessResult<TOutput> CreateError(TOutput? output, IEnumerable<Message>? messageCollection = null) => new(ProcessResultType.Error, messageCollection, output);
     public static ProcessResult<TOutput> CreatePartial(TOutput? output, IEnumerable<Message>? messageCollection = null) => new(ProcessResultType.Partial, messageCollection, output);
-    public static ProcessResult<TOutput> CreateBasedOnMessageCollection(TOutput? output, IEnumerable<Message>? messageCollection = null)
+    public static ProcessResult<TOutput> FromMessageCollection(TOutput? output, IEnumerable<Message>? messageCollection = null)
     {
         if (messageCollection is null || !messageCollection.Any())
             return CreateSuccess(output);
@@ -87,5 +101,12 @@ public readonly struct ProcessResult<TOutput>
                 : CreateError(output, messageCollection);
         else
             return CreateSuccess(output, messageCollection);
+    }
+
+    // Private Methods
+    private static void ValidateType(ProcessResultType type)
+    {
+        if (!Enum.IsDefined(type))
+            throw new InvalidProcessResultTypeException(processResultType: type);
     }
 }
