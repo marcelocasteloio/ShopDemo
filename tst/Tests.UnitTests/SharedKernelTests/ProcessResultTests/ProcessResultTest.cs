@@ -10,6 +10,68 @@ public class ProcessResultTest
     private const string CONTEXT = "SharedKernel";
     private const string OBJECT_NAME = nameof(ProcessResult);
 
+
+    [Fact(DisplayName = "Should create without message")]
+    [Trait(CONTEXT, OBJECT_NAME)]
+    public void ProcessResult_Should_Create_Without_Message()
+    {
+        // Arrange
+        var processResultType = ProcessResultType.Success;
+
+        // Act
+        var processResultCollection = new[]
+        {
+            ProcessResult.Create(processResultType),
+            ProcessResult.CreateSuccess()
+        };
+
+        // Assert
+        var validateAction = new Action<ProcessResult>(processResult =>
+        {
+            processResult.Type.Should().Be(processResultType);
+            processResult.IsSuccess.Should().BeTrue();
+            processResult.IsPartial.Should().BeFalse();
+            processResult.IsError.Should().BeFalse();
+
+            processResult.MessageCollection.Should().BeEmpty();
+        });
+
+        foreach (var processResult in processResultCollection)
+            validateAction(processResult);
+    }
+
+    [Fact(DisplayName = "Should create with output and without message")]
+    [Trait(CONTEXT, OBJECT_NAME)]
+    public void ProcessResult_Should_Create_With_Output_And_Without_Message()
+    {
+        // Arrange
+        var processResultType = ProcessResultType.Success;
+        var output = new { Id = 1, Name = "sample object" };
+
+        // Act
+        var processResultCollection = new[]
+        {
+            ProcessResult<object>.Create(processResultType, output),
+            ProcessResult<object>.CreateSuccess(output)
+        };
+
+        // Assert
+        var validateAction = new Action<ProcessResult<object>>(processResult =>
+        {
+            processResult.Type.Should().Be(processResultType);
+            processResult.IsSuccess.Should().BeTrue();
+            processResult.IsPartial.Should().BeFalse();
+            processResult.IsError.Should().BeFalse();
+
+            processResult.Output.Should().BeSameAs(output);
+
+            processResult.MessageCollection.Should().BeEmpty();
+        });
+
+        foreach (var processResult in processResultCollection)
+            validateAction(processResult);
+    }
+
     [Fact(DisplayName = "Should create success")]
     [Trait(CONTEXT, OBJECT_NAME)]
     public void ProcessResult_Should_Create_Success()
