@@ -577,4 +577,54 @@ public class ProcessResultTest
         foreach (var hasThrownException in hasThrownExceptionCollection)
             hasThrownException.Should().BeTrue();
     }
+
+    [Fact(DisplayName = "Should implited converted to bool")]
+    [Trait(CONTEXT, OBJECT_NAME)]
+    public void ProcessResult_Should_Implicited_Converted_To_Bool()
+    {
+        // Arrange
+        var successProcessResultA = ProcessResult.CreateSuccess();
+        var successProcessResultB = ProcessResult<object>.CreateSuccess(output: default);
+        var partialProcessResultA = ProcessResult.CreatePartial();
+        var partialProcessResultB = ProcessResult<object>.CreatePartial(output: default);
+        var errorProcessResultA = ProcessResult.CreateError();
+        var errorProcessResultB = ProcessResult<object>.CreateError(output: default);
+
+        // Act
+        bool successProcessResultAResult = successProcessResultA;
+        bool successProcessResultBResult = successProcessResultB;
+        bool partialProcessResultAResult = partialProcessResultA;
+        bool partialProcessResultBResult = partialProcessResultB;
+        bool errorProcessResultAResult = errorProcessResultA;
+        bool errorProcessResultBResult = errorProcessResultB;
+
+        // Assert
+        successProcessResultAResult.Should().BeTrue();
+        successProcessResultBResult.Should().BeTrue();
+        partialProcessResultAResult.Should().BeFalse();
+        partialProcessResultBResult.Should().BeFalse();
+        errorProcessResultAResult.Should().BeFalse();
+        errorProcessResultBResult.Should().BeFalse();
+    }
+
+    [Fact(DisplayName = "Should implited converted from bool")]
+    [Trait(CONTEXT, OBJECT_NAME)]
+    public void ProcessResult_Should_Implicited_Converted_From_Bool()
+    {
+        // Arrange
+        var trueValue = true;
+        var falseValue = false;
+
+        // Act
+        ProcessResult processResultA = trueValue;
+        ProcessResult<object> processResultB = trueValue;
+        ProcessResult processResultC = falseValue;
+        ProcessResult<object> processResultD = falseValue;
+
+        // Assert
+        processResultA.IsSuccess.Should().BeTrue();
+        processResultB.IsSuccess.Should().BeTrue();
+        processResultC.IsSuccess.Should().BeFalse();
+        processResultD.IsSuccess.Should().BeFalse();
+    }
 }
