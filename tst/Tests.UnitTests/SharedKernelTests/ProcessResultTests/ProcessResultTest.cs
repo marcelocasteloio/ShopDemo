@@ -140,10 +140,10 @@ public class ProcessResultTest
             processResult.IsError.Should().BeFalse();
 
             processResult.MessageCollection.Should().HaveCount(4);
-            processResult.MessageCollection.Any(q => q.Code.Equals(successMessageCode)).Should().BeTrue();
-            processResult.MessageCollection.Any(q => q.Code.Equals(informationMessageCode)).Should().BeTrue();
-            processResult.MessageCollection.Any(q => q.Code.Equals(warningMessageCode)).Should().BeTrue();
-            processResult.MessageCollection.Any(q => q.Code.Equals(errorMessageCode)).Should().BeTrue();
+            processResult.MessageCollection!.Any(q => q.Code.Equals(successMessageCode)).Should().BeTrue();
+            processResult.MessageCollection!.Any(q => q.Code.Equals(informationMessageCode)).Should().BeTrue();
+            processResult.MessageCollection!.Any(q => q.Code.Equals(warningMessageCode)).Should().BeTrue();
+            processResult.MessageCollection!.Any(q => q.Code.Equals(errorMessageCode)).Should().BeTrue();
         });
 
         foreach (var processResult in processResultCollection)
@@ -188,10 +188,10 @@ public class ProcessResultTest
             processResult.HasOutput.Should().BeTrue();
 
             processResult.MessageCollection.Should().HaveCount(4);
-            processResult.MessageCollection.Any(q => q.Code.Equals(successMessageCode)).Should().BeTrue();
-            processResult.MessageCollection.Any(q => q.Code.Equals(informationMessageCode)).Should().BeTrue();
-            processResult.MessageCollection.Any(q => q.Code.Equals(warningMessageCode)).Should().BeTrue();
-            processResult.MessageCollection.Any(q => q.Code.Equals(errorMessageCode)).Should().BeTrue();
+            processResult.MessageCollection!.Any(q => q.Code.Equals(successMessageCode)).Should().BeTrue();
+            processResult.MessageCollection!.Any(q => q.Code.Equals(informationMessageCode)).Should().BeTrue();
+            processResult.MessageCollection!.Any(q => q.Code.Equals(warningMessageCode)).Should().BeTrue();
+            processResult.MessageCollection!.Any(q => q.Code.Equals(errorMessageCode)).Should().BeTrue();
         });
 
         foreach (var processResult in processResultCollection)
@@ -232,10 +232,10 @@ public class ProcessResultTest
             processResult.IsError.Should().BeTrue();
 
             processResult.MessageCollection.Should().HaveCount(4);
-            processResult.MessageCollection.Any(q => q.Code.Equals(successMessageCode)).Should().BeTrue();
-            processResult.MessageCollection.Any(q => q.Code.Equals(informationMessageCode)).Should().BeTrue();
-            processResult.MessageCollection.Any(q => q.Code.Equals(warningMessageCode)).Should().BeTrue();
-            processResult.MessageCollection.Any(q => q.Code.Equals(errorMessageCode)).Should().BeTrue();
+            processResult.MessageCollection!.Any(q => q.Code.Equals(successMessageCode)).Should().BeTrue();
+            processResult.MessageCollection!.Any(q => q.Code.Equals(informationMessageCode)).Should().BeTrue();
+            processResult.MessageCollection!.Any(q => q.Code.Equals(warningMessageCode)).Should().BeTrue();
+            processResult.MessageCollection!.Any(q => q.Code.Equals(errorMessageCode)).Should().BeTrue();
         });
 
         foreach (var processResult in processResultCollection)
@@ -280,10 +280,10 @@ public class ProcessResultTest
             processResult.HasOutput.Should().BeTrue();
 
             processResult.MessageCollection.Should().HaveCount(4);
-            processResult.MessageCollection.Any(q => q.Code.Equals(successMessageCode)).Should().BeTrue();
-            processResult.MessageCollection.Any(q => q.Code.Equals(informationMessageCode)).Should().BeTrue();
-            processResult.MessageCollection.Any(q => q.Code.Equals(warningMessageCode)).Should().BeTrue();
-            processResult.MessageCollection.Any(q => q.Code.Equals(errorMessageCode)).Should().BeTrue();
+            processResult.MessageCollection!.Any(q => q.Code.Equals(successMessageCode)).Should().BeTrue();
+            processResult.MessageCollection!.Any(q => q.Code.Equals(informationMessageCode)).Should().BeTrue();
+            processResult.MessageCollection!.Any(q => q.Code.Equals(warningMessageCode)).Should().BeTrue();
+            processResult.MessageCollection!.Any(q => q.Code.Equals(errorMessageCode)).Should().BeTrue();
         });
 
         foreach (var processResult in processResultCollection)
@@ -324,10 +324,10 @@ public class ProcessResultTest
             processResult.IsError.Should().BeFalse();
 
             processResult.MessageCollection.Should().HaveCount(4);
-            processResult.MessageCollection.Any(q => q.Code.Equals(successMessageCode)).Should().BeTrue();
-            processResult.MessageCollection.Any(q => q.Code.Equals(informationMessageCode)).Should().BeTrue();
-            processResult.MessageCollection.Any(q => q.Code.Equals(warningMessageCode)).Should().BeTrue();
-            processResult.MessageCollection.Any(q => q.Code.Equals(errorMessageCode)).Should().BeTrue();
+            processResult.MessageCollection!.Any(q => q.Code.Equals(successMessageCode)).Should().BeTrue();
+            processResult.MessageCollection!.Any(q => q.Code.Equals(informationMessageCode)).Should().BeTrue();
+            processResult.MessageCollection!.Any(q => q.Code.Equals(warningMessageCode)).Should().BeTrue();
+            processResult.MessageCollection!.Any(q => q.Code.Equals(errorMessageCode)).Should().BeTrue();
         });
 
         foreach (var processResult in processResultCollection)
@@ -372,10 +372,10 @@ public class ProcessResultTest
             processResult.HasOutput.Should().BeTrue();
 
             processResult.MessageCollection.Should().HaveCount(4);
-            processResult.MessageCollection.Any(q => q.Code.Equals(successMessageCode)).Should().BeTrue();
-            processResult.MessageCollection.Any(q => q.Code.Equals(informationMessageCode)).Should().BeTrue();
-            processResult.MessageCollection.Any(q => q.Code.Equals(warningMessageCode)).Should().BeTrue();
-            processResult.MessageCollection.Any(q => q.Code.Equals(errorMessageCode)).Should().BeTrue();
+            processResult.MessageCollection!.Any(q => q.Code.Equals(successMessageCode)).Should().BeTrue();
+            processResult.MessageCollection!.Any(q => q.Code.Equals(informationMessageCode)).Should().BeTrue();
+            processResult.MessageCollection!.Any(q => q.Code.Equals(warningMessageCode)).Should().BeTrue();
+            processResult.MessageCollection!.Any(q => q.Code.Equals(errorMessageCode)).Should().BeTrue();
         });
 
         foreach (var processResult in processResultCollection)
