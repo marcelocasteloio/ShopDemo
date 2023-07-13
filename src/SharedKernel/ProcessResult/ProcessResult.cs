@@ -22,7 +22,7 @@ public readonly struct ProcessResult
         ValidateType(type);
 
         Type = type;
-        MessageCollection = messageCollection ?? Array.Empty<Message>();
+        MessageCollection = messageCollection;
     }
 
     // Operators
@@ -57,7 +57,11 @@ public readonly struct ProcessResult
             totalMessages += processResultCollection[i].MessageCollection?.Length ?? 0;
 
         ProcessResultType? newProcessResultType = null;
-        var newMessageArray = new Message[totalMessages];
+        
+        Message[]? newMessageArray = null;
+        if(totalMessages > 0)
+            newMessageArray = new Message[totalMessages];
+
         var lastIndex = 0;
 
         for (int i = 0; i < processResultCollection.Length; i++)
@@ -101,7 +105,7 @@ public readonly struct ProcessResult
             lastIndex += processResult.MessageCollection.Length;
         }
 
-        return new ProcessResult(newProcessResultType ?? ProcessResultType.Success, newMessageArray);
+        return new ProcessResult(newProcessResultType!.Value, newMessageArray);
     }
 
     // Private Methods
@@ -132,7 +136,7 @@ public readonly struct ProcessResult<TOutput>
         ValidateType(type);
 
         Type = type;
-        MessageCollection = messageCollection ?? Array.Empty<Message>();
+        MessageCollection = messageCollection;
         Output = output;
     }
 
@@ -168,7 +172,11 @@ public readonly struct ProcessResult<TOutput>
             totalMessages += processResultCollection[i].MessageCollection?.Length ?? 0;
 
         ProcessResultType? newProcessResultType = null;
-        var newMessageArray = new Message[totalMessages];
+
+        Message[]? newMessageArray = null;
+        if (totalMessages > 0)
+            newMessageArray = new Message[totalMessages];
+
         var lastIndex = 0;
 
         for (int i = 0; i < processResultCollection.Length; i++)
@@ -212,7 +220,7 @@ public readonly struct ProcessResult<TOutput>
             lastIndex += processResult.MessageCollection.Length;
         }
 
-        return new ProcessResult<TOutput>(newProcessResultType ?? ProcessResultType.Success, newMessageArray, output);
+        return new ProcessResult<TOutput>(newProcessResultType!.Value, newMessageArray, output);
     }
     // Private Methods
     private static void ValidateType(ProcessResultType type)
