@@ -37,11 +37,11 @@ public readonly struct ProcessResult
     public static ProcessResult FromProcessResultWithOutput<TOutput>(ProcessResult<TOutput> processResult) => Create(processResult.Type, processResult.MessageCollection);
     public static ProcessResult FromMessageCollection(Message[]? messageCollection = null)
     {
-        if (messageCollection is null || !messageCollection.Any())
+        if (messageCollection is null || messageCollection.Length == 0)
             return CreateSuccess();
 
-        if (messageCollection.Any(message => message.Type == MessageType.Error))
-            return messageCollection.Any(message => message.Type == MessageType.Success)
+        if (Array.Exists(messageCollection, message => message.Type == MessageType.Error))
+            return Array.Exists(messageCollection, message => message.Type == MessageType.Success)
                 ? CreatePartial(messageCollection)
                 : CreateError(messageCollection);
         else
@@ -148,11 +148,11 @@ public readonly struct ProcessResult<TOutput>
     public static ProcessResult<TOutput> CreatePartial(TOutput? output, Message[]? messageCollection = null) => new(ProcessResultType.Partial, messageCollection, output);
     public static ProcessResult<TOutput> FromMessageCollection(TOutput? output, Message[]? messageCollection = null)
     {
-        if (messageCollection is null || !messageCollection.Any())
+        if (messageCollection is null || messageCollection.Length == 0)
             return CreateSuccess(output);
 
-        if (messageCollection.Any(message => message.Type == MessageType.Error))
-            return messageCollection.Any(message => message.Type == MessageType.Success)
+        if (Array.Exists(messageCollection, message => message.Type == MessageType.Error))
+            return Array.Exists(messageCollection, message => message.Type == MessageType.Success)
                 ? CreatePartial(output, messageCollection)
                 : CreateError(output, messageCollection);
         else
