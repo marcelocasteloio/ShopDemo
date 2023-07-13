@@ -796,8 +796,7 @@ public class ProcessResultTest
                 value.MessageCollection.Should().HaveCount(expectedMessageArray.Length);
 
                 foreach (var item in expectedProcessResultCollection)
-                    if(item.MessageCollection is not null)
-                        item.MessageCollection.Should().BeSubsetOf(expectedMessageArray);
+                    item.MessageCollection?.Should().BeSubsetOf(expectedMessageArray);
             }
         );
 
@@ -1035,8 +1034,7 @@ public class ProcessResultTest
                 value.MessageCollection.Should().HaveCount(expectedMessageArray.Length);
 
                 foreach (var item in expectedProcessResultCollection)
-                    if(item.MessageCollection is not null)
-                        item.MessageCollection.Should().BeSubsetOf(expectedMessageArray);
+                    item.MessageCollection?.Should().BeSubsetOf(expectedMessageArray);
             }
         );
 
