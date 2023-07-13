@@ -97,7 +97,7 @@ public readonly struct ProcessResult
             Array.Copy(
                 sourceArray: processResult.MessageCollection,
                 sourceIndex: 0,
-                destinationArray: newMessageArray,
+                destinationArray: newMessageArray!,
                 destinationIndex: lastIndex,
                 length: processResult.MessageCollection.Length
             );
